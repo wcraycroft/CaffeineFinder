@@ -1,8 +1,10 @@
 package edu.miracostacollege.cs134.caffeinefinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -94,6 +96,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-    // TODO: (4) Create a viewLocationsDetails(View v) method to create a new Intent to the
+    // TODO: (4) Create a viewLocationDetails(View v) method to create a new Intent to the
     // TODO: CaffeineDetailsActivity class, sending it the selectedLocation the user picked from the locationsListView
+    public void viewLocationDetails(View view) {
+        // Get Location object sent in list item object's tag property
+        Location selectedLocation = (Location) view.getTag();
+        // Instantiate details intent
+        Intent detailsIntent = new Intent(this, CaffeineDetailsActivity.class);
+        detailsIntent.putExtra("Selected Location", selectedLocation);
+        // Launch activity
+        startActivity(detailsIntent);
+    }
 }
